@@ -7,6 +7,7 @@ module RenderAsCSV
     return render_without_csv(options, extra_options, &block) unless options.is_a?(Hash) and options[:csv]
     data = options.delete(:csv)
     style = options.delete(:style) || :default
-    send_data Array(data).to_comma(style), options.merge(:type => :csv)
+    type = options.delete(:type) || :csv
+    send_data Array(data).to_comma(style), options.merge(:type => type)
   end
 end
